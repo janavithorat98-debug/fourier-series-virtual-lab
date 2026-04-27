@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fourier Series Virtual Lab</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f0f8ff;
+            text-align: center;
+        }
+        h1 {
+            color: darkblue;
+        }
+        canvas {
+            border: 1px solid black;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Fourier Series Virtual Lab</h1>
+
+<p>Visualize how sine waves combine to form a square wave.</p>
+
+<label>Enter number of terms:</label>
+<input type="number" id="terms" value="1">
+
+<button onclick="draw()">Generate Graph</button>
+
+<br>
+
+<canvas id="graph" width="600" height="400"></canvas>
+
+<script>
+function draw() {
+    let canvas = document.getElementById("graph");
+    let ctx = canvas.getContext("2d");
+    let terms = document.getElementById("terms").value;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.beginPath();
+
+    for (let x = 0; x < canvas.width; x++) {
+        let t = (x / canvas.width) * 2 * Math.PI;
+        let y = 0;
+
+        for (let n = 1; n <= terms; n += 2) {
+            y += (4/Math.PI) * (1/n) * Math.sin(n * t);
+        }
+
+        let scaledY = canvas.height/2 - y * 100;
+
+        if (x === 0) ctx.moveTo(x, scaledY);
+        else ctx.lineTo(x, scaledY);
+    }
+
+    ctx.stroke();
+}
+</script>
+
+</body>
+</html>
