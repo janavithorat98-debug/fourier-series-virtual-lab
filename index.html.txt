@@ -1,0 +1,7 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Fourier Series Virtual Lab</h1>
+<p>Working...</p>
+</body>
+</html>
