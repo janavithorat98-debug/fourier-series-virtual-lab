@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fourier Series Virtual Lab</title>
+</head>
+<body>
+
+<h1>Fourier Series Virtual Lab</h1>
+
+<h2>Theory</h2>
+<p>Fourier Series represents a periodic function using sine waves.</p>
+
+<h2>Formula</h2>
+<p>f(x) = (4/π)[sin(x) + (1/3)sin(3x) + ...]</p>
+
+<h2>Input</h2>
+<input type="number" id="terms" placeholder="Enter number of terms">
+<button onclick="draw()">Generate</button>
+
+<canvas id="graph" width="500" height="300"></canvas>
+
+<script>
+function draw() {
+    let n = document.getElementById("terms").value;
+    let canvas = document.getElementById("graph");
+    let ctx = canvas.getContext("2d");
+
+    ctx.clearRect(0,0,500,300);
+    ctx.beginPath();
+
+    for(let x=0; x<500; x++) {
+        let y = 0;
+        for(let k=1; k<=n; k+=2) {
+            y += (4/Math.PI)*(1/k)*Math.sin(k*x*0.02);
+        }
+        ctx.lineTo(x,150 - y*50);
+    }
+
+    ctx.stroke();
+}
+</script>
+
+</body>
+</html>
